@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Head from 'next/head';
 
 // ─── Helper Components ───────────────────────────────────────────────────────
@@ -263,12 +263,12 @@ function LoadingScreen({ name }) {
   ];
   const [step, setStep] = useState(0);
 
-  useState(() => {
+  useEffect(() => {
     const interval = setInterval(() => {
       setStep((s) => (s + 1) % steps.length);
     }, 1200);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   return (
     <div
